@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru" class="no-js page">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{#if title}}{{ title }} – {{ data.company }}{{/if}}</title>
+  {{> fonts }}
+  <!-- build:css -->
+  <link rel="stylesheet" href="{{root}}css/app.css">
+  <!-- endbuild -->
+  <link rel="icon" href="{{root}}favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{root}}apple-touch-icon.png">
+</head>
+<body class="page-body">
+
+{{!> header }}
+
+<!-- Workarea -->
+<main class="page-main">
+  {{> body}}
+</main>
+<!-- / Workarea -->
+
+{{!> footer }}
+
+<!-- Scripts -->
+
+<!-- build:js -->
+<script src="{{root}}js/app.js"></script>
+<script>
+  jQuery(document).ready(
+    function () {
+      spa.initModule( jQuery('#spa') ); }
+  )
+</script>
+
+<!-- endbuild -->
+<!--script src="{{root}}js/project.js"></script>
+<script src="{{root}}js/backend.js"></script-->
+<!-- / Scripts -->
+
+{{!> modal-ajax }}
+
+<a class="backtop" href="#" data-backtop title="Наверх" data-right="20">{{> mixin-svg i="up"}}</a>
+
+<!-- build:pixel-glass -->
+{{!> pixel-glass }}
+<!-- endbuild -->
+</body>
+</html>

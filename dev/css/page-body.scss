@@ -1,0 +1,23 @@
+.page-body {
+  margin: 0;
+  padding: 0;
+
+  // Для прижатия подвала к низу страницы
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  font-family: $font-family;
+
+  // Определяет как браузеру оптимизировать рендеринг текста.
+  // optimizeLegibility – качественное отображение, разрешает кернинг и лигатуры.
+  text-rendering: optimizeLegibility;
+  // Делает текст более тонким на маках
+  // (начертание сглаженное и четкое одновременно)
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // Убирает ужастное синее подсвечивание при тапах на девайсах
+  -webkit-tap-highlight-color: transparent;
+  // Делает подчеркивание с помощью text-decoration: underline необрывистым (там где это работает)
+  text-decoration-skip: objects;
+}

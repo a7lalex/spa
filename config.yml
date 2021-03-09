@@ -1,0 +1,69 @@
+# Gulp paths
+PATHS:
+  dev: 'dev'
+  build: 'dist'
+  docs: 'dist/docs'
+  clearHTML:
+    - 'dist/*.html'
+    - 'dist/ajax/'
+  clearCSS:
+    - 'dist/css/'
+  clearJS:
+    - 'dist/js/*.js'
+    - 'dist/js/*.js.map'
+  clearImg:
+    - 'dist/img/spritePNG.png'
+    - 'dist/img/spriteSVG.svg'
+  # Path to Panini
+  pages: 'dev/html/pages/'
+  layouts: 'dev/html/layouts/'
+  partials: 'dev/html/partials/'
+  data: 'dev/html/data/'
+  helpers: 'dev/html/helpers/'
+  # Path to JavaScript App
+  appJS: 'dev/js/appJS.yml'
+  # Path to app
+  appCSS: 'dev/css/app.scss'
+  docsCSS: 'dev/css/docs.scss'
+  # Paths to css, which can then be loaded with @import
+  css: 'dev/css/**/*.{scss, css}'
+  # Paths to sprite-images
+  spritePNG: 'dev/img/spritePNG/'
+  spriteSVG: 'dev/img/spriteSVG/'
+
+# Your project's server will run on localhost:xxxx at this port
+PORT: 8000
+
+# Cache files
+CACHE: true
+
+# Autoprefixer will make sure your CSS works with these browsers
+COMPATIBILITY:
+  - 'last 2 versions'
+  - 'ie >= 10'
+
+# Errors text in tree OS
+MESSAGE:
+  title: 'Обнаружена ошибка!'
+  html: 'Ошибка в HTML! Подробности в консоли'
+  css: 'Ошибка в CSS! Подробности в консоли'
+  js: 'Ошибка в JS! Подробности в консоли'
+  sizeTitle: 'Размер файла:'
+
+# Setting for css-nano
+CSS_NANO:
+  zindex: false
+  autoprefixer: false
+
+# Setting for created sprite PNG
+SPRITE_PNG:
+  # Name image sprite
+  imgName: 'spritePNG.png'
+  # Name styles sprite
+  cssName: '_variables-sprite.scss'
+  # Sort in sprite  (top-down, left-right, diagonal, alt-diagonal, binary-tree)
+  algorithm: 'top-down'
+  # Padding's for sprites
+  padding: 1
+  # Path to template sprite
+  cssTemplate: './dev/service/sprite.template.mustache'

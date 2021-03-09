@@ -1,0 +1,19 @@
+.backtop {
+  display: none;
+  width: rem-calc(75);
+  height: rem-calc(75);
+  border-radius: 50%;
+  padding: rem-calc(10);
+  background-color: rgba(#bfbfbf, 0.4);
+  font-size: rem-calc(14);
+  color: $color-main;
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+  z-index: 1000;
+
+  & .icon {
+    margin-top: rem-calc(12.5);
+    fill: $color-white;
+  }
+}

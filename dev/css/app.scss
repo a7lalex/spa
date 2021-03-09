@@ -1,0 +1,33 @@
+// Базовые настройки проекта
+@import 'settings/settings';
+
+// Вспомогательные функции и примеси
+@import 'functions/functions';
+@import 'mixins/mixins';
+
+// Глобальные стили для проекта
+@import 'base';
+@import 'typo';
+@import 'grid';
+@import 'form';
+
+// Основные стили элементов страницы
+@import 'page';
+@import 'page-body';
+@import 'page-header';
+@import 'page-main';
+@import 'page-footer';
+
+// Компоненты проекта
+@import 'components/components';
+@import 'animations/animations';
+
+// Помощники
+@import 'helpers';
+
+// Стили для печати
+@import 'print';
+
+//
+@import 'spa';
+@import 'spa/spa.chat';

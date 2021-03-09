@@ -1,0 +1,8 @@
+.page-footer {
+  // Для прижатия подвала к низу страницы
+  margin-top: auto;
+  padding: rem-calc(36 0);
+
+  color: $color-white;
+  background-color: $color-black;
+}

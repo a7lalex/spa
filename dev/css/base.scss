@@ -1,0 +1,120 @@
+$link: hsl(200, 75%, 56%) !default;
+$link-hover: hsl(200, 60%, 35%) !default;
+
+// Такое определение дает возможность переопределить box-sizing, в случае необходимости,
+// для определенной области, например, если на проект был добавлен компонент
+// у которого был box-sizing: content-box;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  // Избавляемся от зазора под изображениями
+  display: inline-block;
+  vertical-align: middle;
+
+  // Указывает браузеру, какой алгоритм использовать при масштабировании картинок
+  // biqubic - Повышает качество картинки за счет использования бикубического метода интерполяции.
+  // Это дает сглаженные границы и плавный тоновый диапазон цветов.
+  -ms-interpolation-mode: bicubic;
+}
+
+// Media
+img,
+embed,
+object,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe,
+audio {
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+// Table
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+.link,
+a {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+
+  strong {
+    color: currentColor;
+  }
+
+  @include md-block() {
+    &:hover {
+      color: $link-hover;
+    }
+  }
+}
+
+input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+  display: none;
+}
+
+input::-ms-clear {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+// Styles Google Maps and MapQuest embeds properly
+.map_canvas,
+.maps,
+.mqa-display {
+  img,
+  embed,
+  object {
+    max-width: none !important;
+  }
+}

@@ -1,0 +1,52 @@
+# Paths to JavaScript libraries, which are compined into one file
+APP:
+  - "dev/js/vendor/jquery.min.js"
+  - "dev/js/vendor/jquery.uriAnchor.js"
+  # "dev/js/vendor/modulargrid/*.js"
+  # "dev/js/vendor/device.min.js"
+  # "dev/js/vendor/what-input.min.js"
+  # "dev/js/vendor/jquery.cookie.min.js"
+  # "dev/js/vendor/clockpicker.js"
+  # Core Foundation files
+  # "dev/js/foundation/foundation.core.js"
+  # "dev/js/foundation/foundation.util.*.js"
+  # Foundation plugins
+  # "dev/js/foundation/foundation.equalizer.js"
+  # "dev/js/foundation/foundation.interchange.js"
+  # "dev/js/foundation/foundation.magellan.js"
+  # "dev/js/foundation/foundation.toggler.js"
+  # Individual components
+  # If you aren't using a component, just remove it from the list
+  # "dev/js/foundation/foundation.abide.js"
+  # "dev/js/foundation/foundation.accordion.js"
+  # "dev/js/foundation/foundation.accordionMenu.js"
+  # "dev/js/foundation/foundation.drilldown.js"
+  # "dev/js/foundation/foundation.dropdown.js"
+  # "dev/js/foundation/foundation.offcanvas.js"
+  # "dev/js/foundation/foundation.slider.js"
+  # "dev/js/foundation/foundation.reveal.js"
+  # "dev/js/foundation/foundation.sticky.js"
+  # "dev/js/foundation/foundation.tabs.js"
+  # "dev/js/foundation/foundation.tooltip.js"
+  # Custom plugins
+  # "dev/js/vendor/foundation.backtop.js"
+  # "dev/js/vendor/jquery.chosen.js"
+  # "dev/js/vendor/lightgallery-all.js"
+  # "dev/js/vendor/slick.js"
+  # "dev/js/vendor/easyzoom.js"
+  # "dev/js/vendor/lightslider.js"
+  # "dev/js/vendor/tiny-slider.js"
+  # "dev/js/vendor/jquery.tinyscrollbar.min.js"
+  - "dev/js/spa/spa.js"
+  - "dev/js/spa/spa.util.js"
+  - "dev/js/spa/spa.model.js"
+  - "dev/js/spa/spa.shell.js"
+  - "dev/js/spa/spa.chat.js"
+
+PROJECT: "dev/js/project.js"
+
+CUSTOM: "dev/js/backend.js"
+
+DOCS:
+  - 'dev/js/vendor/docs-code-copy.js'
+  - 'dev/js/vendor/docs-colors.js'

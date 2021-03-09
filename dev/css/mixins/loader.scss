@@ -1,0 +1,20 @@
+@mixin loader(
+    $loader-color: $color-white,
+    $loader-size: 1em
+  ) {
+  animation: spinAround 500ms infinite linear;
+  border: 2px solid $loader-color;
+  border-radius: $radius-rounded;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: $loader-size;
+  position: relative;
+  width: $loader-size;
+  z-index: 1011;
+}
+
+%loader {
+  @include loader;
+}

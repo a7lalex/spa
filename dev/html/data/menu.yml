@@ -1,0 +1,54 @@
+links:
+  -
+    name: 'О нас'
+    link: 'index'
+    sub:
+      -
+        name: 'Цены'
+        link: 'price'
+      -
+        name: 'Отзывы'
+        link: 'reviews'
+      -
+        name: 'Вакансии'
+        link: 'vacancy'
+      -
+        name: 'Фотогалерея'
+        link: 'gallery'
+  -
+    name: 'Услуги'
+    link: 'about'
+    sub:
+      -
+        name: 'Диагностика авто'
+        link: 'diagnostics'
+        icon: 'icon-diagnostics'
+      -
+        name: 'Слесарные работы'
+        link: 'metalwork'
+        icon: 'icon-metalwork'
+      -
+        name: 'Развал схождение'
+        link: 'convergence'
+        icon: 'icon-convergence'
+      -
+        name: 'Шиномонтаж'
+        link: 'tire_service'
+        icon: 'icon-tire'
+      -
+        name: 'Заправка кондиционеров'
+        link: 'conditioner'
+        icon: 'icon-conditioner'
+      -
+        name: 'Мойка'
+        link: 'washing'
+        icon: 'icon-washing'
+  -
+    name: 'Статьи'
+    link: 'blog'
+  -
+    name: 'Новости'
+    link: 'news'
+  -
+    name: 'Контакты'
+    link: 'contacts'

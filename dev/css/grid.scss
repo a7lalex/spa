@@ -1,0 +1,141 @@
+.container {
+  @include container();
+
+  & .row.tns-slider,
+  & > .row {
+    margin-right: ($offset_one_side * -1);
+    margin-left: ($offset_one_side * -1);
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.row {
+  @include row-flex();
+}
+
+.row .row {
+  margin-right: ($offset_one_side * -1);
+  margin-left: ($offset_one_side * -1);
+}
+
+.col {
+  @include col();
+}
+
+.row .col.row.row,
+.row .row.row.col {
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row.is-full {
+  max-width: none;
+}
+
+.row.is-collapse > .col {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row .row.is-collapse,
+.row.is-collapse > .col > .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+@for $i from 1 through $columns {
+  .xxs-#{$i} {
+    @include size-xxs($i);
+  }
+}
+
+@for $i from 1 through $columns {
+  .xs-#{$i} {
+    @include size-xs($i);
+  }
+}
+
+@for $i from 1 through $columns {
+  .sm-#{$i} {
+    @include size-sm($i);
+  }
+}
+
+@for $i from 1 through $columns {
+  .mdx-#{$i} {
+    @include size-mdx($i);
+  }
+}
+
+@for $i from 1 through $columns {
+  .md-#{$i} {
+    @include size-md($i);
+  }
+}
+
+@for $i from 1 through $columns {
+  .lg-#{$i} {
+    @include size-lg($i);
+  }
+}
+
+.is-align-center {
+  align-items: center;
+}
+
+.is-collapse .col {
+  padding: 0;
+}
+
+.is-two-sm {
+  @include to($break_sm) {
+    $val: 100% / $columns * 6;
+    flex: 0 0 #{$val};
+    max-width: #{$val};
+  }
+}
+
+.is-two-xs {
+  @include to($break_xs) {
+    $val: 100% / $columns * 6;
+    flex: 0 0 #{$val};
+    max-width: #{$val};
+  }
+}
+
+.row.tns-slider {
+  flex-wrap: nowrap;
+}
+
+.debug {
+  @include container();
+
+  .row {
+    margin-top: rem-calc(10);
+    margin-bottom: rem-calc(30);
+    outline: 1px dashed #c1c1c1;
+
+    .row {
+      margin-bottom: rem-calc(0);
+    }
+  }
+
+  .col > code {
+    margin-top: rem-calc(10);
+    margin-bottom: rem-calc(10);
+    padding-top: rem-calc(10);
+    padding-bottom: rem-calc(10);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #eaeaea;
+    color: $color-main;
+    text-align: center;
+    outline: 1px dashed $color-main;
+  }
+}

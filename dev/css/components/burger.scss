@@ -1,0 +1,27 @@
+.burger-close {
+  @include unselectable;
+  @include disable-touch-outline;
+  background-color: transparent;
+  border: 0;
+
+  & .icon {
+    width: rem-calc(26.81);
+    height: rem-calc(30.22);
+    fill: $color-gray-65;
+  }
+}
+
+.burger-decor {
+  @include unselectable;
+  @include disable-touch-outline;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+
+  & .icon {
+    width: rem-calc(37);
+    height: rem-calc(30);
+    fill: $color-white;
+  }
+}
+

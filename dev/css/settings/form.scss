@@ -1,0 +1,7 @@
+// Элементы управления
+$control-radius: $radius;
+$control-border-width: 1px;
+$control-height: auto;
+$control-line-height: 1.2;
+$control-padding-vertical: calc(1.5em - #{$control-border-width});
+$control-padding-horizontal: calc(1.25em - #{$control-border-width});

@@ -1,0 +1,59 @@
+$close-btn-size: 2rem;
+
+.close-btn {
+  @include unselectable;
+  @include disable-touch-outline;
+
+  position: absolute;
+  top: rem-calc(16);
+  right: rem-calc(16);
+
+  cursor: pointer;
+  display: block;
+  height: $close-btn-size;
+  width: $close-btn-size;
+  z-index: 1012;
+
+  span {
+    background-color: currentColor;
+    display: block;
+    height: 2px;
+    left: calc(50% - 8px);
+    position: absolute;
+    transform-origin: center;
+    transition-duration: 0.2s;
+    transition-property: background-color, opacity, transform;
+    transition-timing-function: ease;
+    width: 16px;
+
+    &:nth-child(1) {
+      top: calc(50% - 6px);
+    }
+
+    &:nth-child(2) {
+      top: calc(50% - 1px);
+    }
+
+    &:nth-child(3) {
+      top: calc(50% + 4px);
+    }
+  }
+
+  span {
+    &:nth-child(1) {
+      transform: translateY(5px) rotate(45deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+  }
+
+  background-color: black;
+  border: 0;
+  color: white;
+}

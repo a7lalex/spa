@@ -1,0 +1,36 @@
+.breadcrumbs {
+  @extend %block;
+  @extend %unselectable;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+
+  @include to($break_sm) {
+    font-size: rem-calc(12);
+  }
+}
+
+.breadcrumbs a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid;
+}
+
+.breadcrumbs__item {
+  display: flex;
+  align-items: center;
+  color: $color-gray-light;
+
+  &:first-child a {
+    padding-left: 0;
+  }
+
+  & + &::before {
+    color: #b5b5b5;
+    content: "\0002f";
+    padding: 0 0.75em;
+  }
+}

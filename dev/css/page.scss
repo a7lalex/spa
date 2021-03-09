@@ -1,0 +1,22 @@
+.page {
+  box-sizing: border-box;
+  // Для прижатия подвала к низу страницы
+  height: 100%;
+  // Глобальный размер шрифта по умолчанию
+  font-size: $font-size;
+  // Цвет фона страницы
+  background-color: $color-background;
+  // Цвет текта
+  color: $color-text;
+  // Запретить корректировку размера шрифта после изменения ориентации в iOS
+  -webkit-text-size-adjust: 100%;
+}
+
+// Фикс при прижатии футера для IE.
+// В блоке с min-height (которым в данном случае служит body) flex некорректно работает
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .page {
+    display: flex;
+    flex-direction: column;
+  }
+}

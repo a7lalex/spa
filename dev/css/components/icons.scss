@@ -1,0 +1,17 @@
+.icon-png {
+  display: inline-block;
+  @include s-image($s-whatsapp-color);
+}
+
+// Social
+.icon-whatsapp {
+  @include s-icon($s-whatsapp-color);
+}
+
+
+// Icon SVG
+.icon {
+  width: rem-calc(27);
+  height: rem-calc(27);
+  fill: $color-main;
+}

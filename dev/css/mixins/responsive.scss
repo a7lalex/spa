@@ -1,0 +1,95 @@
+@mixin lg($name, $value){
+  @media screen and (min-width: $break-lg){
+    #{$name}: $value;
+  }
+}
+
+@mixin lg-block(){
+  @media screen and (min-width: $break-lg){
+    @content;
+  }
+}
+
+@mixin md($name, $value){
+  @media screen and (min-width: $break-md){
+    #{$name}: $value;
+  }
+}
+
+@mixin md-block(){
+  @media screen and (min-width: $break-md){
+    @content;
+  }
+}
+
+@mixin sm($name, $value){
+  @media screen and (min-width: $break-sm){
+    #{$name}: $value;
+  }
+}
+
+@mixin sm-block(){
+  @media screen and (min-width: $break-sm){
+    @content;
+  }
+}
+
+@mixin xs($name, $value){
+  @media screen and (min-width: $break-xs){
+    #{$name}: $value;
+  }
+}
+
+@mixin xs-block(){
+  @media screen and (min-width: $break-xs){
+    @content;
+  }
+}
+
+@mixin xxs($name, $value){
+  @media screen and (min-width: $break-xxs){
+    #{$name}: $value;
+  }
+}
+
+@mixin xxs-block(){
+  @media screen and (min-width: $break-xxs){
+    @content;
+  }
+}
+
+@mixin from($min-width){
+  @media screen and (min-width: $min-width){
+    @content;
+  }
+}
+
+@mixin to($max-width){
+  @media screen and (max-width: $max-width){
+    @content;
+  }
+}
+
+@mixin from-to($min-width, $max-width){
+  @media screen and (min-width: $min-width) and (max-width: $max-width){
+    @content;
+  }
+}
+
+@mixin u-row-flex($offset){
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: ($offset / -2);
+  margin-right: ($offset / -2);
+}
+
+@mixin u-col($offset){
+  box-sizing: border-box;
+  word-wrap: break-word;
+  margin-left: ($offset / 2);
+  margin-right: ($offset / 2);
+}
+
+@mixin u-size($n, $columns, $offset){
+  width: #{calc(100% / #{$columns} * #{$n} - #{$offset})};
+}

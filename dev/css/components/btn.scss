@@ -1,0 +1,233 @@
+$btn-color: $color-white !default;
+$btn-background: linear-gradient(266.59deg, $color-main -5.34%, #fa2121 128.34%) !default;
+$btn-hover-background-color: $color-main !default;
+
+$btn-border-color: $color-main !default;
+$btn-border-width: 0 !default;
+
+$btn-padding-vertical: calc(0.885em - #{$control-border-width}) !default;
+$btn-padding-horizontal: 1.2em !default;
+
+$btn-hover-color: $color-white !default;
+$btn-hover-border-color: $btn-hover-background-color !default;
+
+$btn-focus-color: $link-focus !default;
+$btn-focus-border-color: $link-focus-border !default;
+//$btn-focus-box-shadow-size: 0 0 0 0.125em !default;
+//$btn-focus-box-shadow-color: bulmaRgba($link, 0.25) !default;
+
+$btn-active-color: $color-white !default;
+$btn-active-border-color: $link-active-border !default;
+
+$btn-text-color: $color-text !default;
+$btn-text-decoration: underline !default;
+$btn-text-hover-background-color: $color-background !default;
+$btn-text-hover-color: $color-white !default;
+
+$btn-disabled-background-color: $color-main !default;
+$btn-disabled-border-color: $border !default;
+$btn-disabled-shadow: none !default;
+$btn-disabled-opacity: 0.5 !default;
+
+$btn-static-color: $color-text !default;
+$btn-static-background-color: $color-main !default;
+$btn-static-border-color: $border !default;
+
+// The button sizes use mixins so they can be used at different breakpoints
+@mixin btn-normal {
+  font-size: $size-normal;
+}
+
+.btn {
+  @extend %control;
+
+  @extend %unselectable;
+
+  background: $btn-background;
+  border-color: $btn-border-color;
+  border-width: $btn-border-width;
+  font-weight: $text-bold;
+  color: $btn-color;
+  //text-transform: uppercase;
+  //letter-spacing: 0.15em;
+  font-size: rem-calc(26);
+  cursor: pointer;
+
+  justify-content: center;
+  padding-bottom: $btn-padding-vertical;
+  padding-left: $btn-padding-horizontal;
+  padding-right: $btn-padding-horizontal;
+  padding-top: $btn-padding-vertical;
+  text-align: center;
+  //white-space: nowrap;
+  box-shadow: $shadow;
+
+  transition: background 400ms ease-in, box-shadow 400ms ease-in;
+
+  @include to($break_md) {
+    font-size: rem-calc(20);
+  }
+
+  strong {
+    color: inherit;
+  }
+
+  .icon {
+    &,
+    &.is-small,
+    &.is-medium,
+    &.is-large {
+      height: 1.5em;
+      width: 1.5em;
+    }
+
+    &:first-child:not(:last-child) {
+      margin-left: calc(#{-1 / 2 * $btn-padding-horizontal} - #{$btn-border-width});
+      margin-right: $btn-padding-horizontal / 4;
+    }
+
+    &:last-child:not(:first-child) {
+      margin-left: $btn-padding-horizontal / 4;
+      margin-right: calc(#{-1 / 2 * $btn-padding-horizontal} - #{$btn-border-width});
+    }
+
+    &:first-child:last-child {
+      margin-left: calc(#{-1 / 2 * $btn-padding-horizontal} - #{$btn-border-width});
+      margin-right: calc(#{-1 / 2 * $btn-padding-horizontal} - #{$btn-border-width});
+    }
+  }
+
+  // States
+  &:hover,
+  &.is-hovered {
+    background-color: $btn-hover-background-color;
+    border-color: $btn-hover-border-color;
+    color: $btn-hover-color;
+    box-shadow: none;
+  }
+
+  /*&:focus,
+  &.is-focused {
+    border-color: $btn-focus-border-color;
+    color: $btn-focus-color;
+
+    /*&:not(:active) {
+      box-shadow: $btn-focus-box-shadow-size $btn-focus-box-shadow-color;
+    }
+  }*/
+
+  &:active,
+  &.is-active {
+    border-color: $btn-active-border-color;
+    color: $btn-active-color;
+  }
+
+  // Colors
+  &.is-text {
+    background-color: transparent;
+    border-color: transparent;
+    color: $btn-text-color;
+    text-decoration: $btn-text-decoration;
+
+    &:hover,
+    &.is-hovered,
+    &:focus,
+    &.is-focused {
+      background-color: $btn-text-hover-background-color;
+      color: $btn-text-hover-color;
+    }
+
+    &:active,
+    &.is-active {
+      background-color: $btn-text-hover-background-color;
+      color: $btn-text-hover-color;
+    }
+
+    &[disabled],
+    fieldset[disabled] & {
+      background-color: transparent;
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+  // Modifiers
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: $btn-disabled-background-color;
+    border-color: $btn-disabled-border-color;
+    box-shadow: $btn-disabled-shadow;
+    opacity: $btn-disabled-opacity;
+  }
+
+  &.is-fullwidth {
+    display: flex;
+    width: 100%;
+  }
+
+  &.is-loading {
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+      @extend %loader;
+      border-bottom-color: $color-white;
+      border-left-color: $color-white;
+
+      @include center(1em);
+
+      position: absolute !important;
+    }
+  }
+
+  &.is-light {
+    border-color: $color-white;
+    color: $color-white;
+  }
+
+  &.is-dark {
+    border-color: $color-black;
+    color: $color-black;
+  }
+}
+
+.buttons {
+  margin-top: rem-calc(20);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  .btn {
+
+    &:not(:last-child):not(.is-fullwidth) {
+      margin-right: 0.5rem;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: -0.5rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &.is-centered {
+    justify-content: center;
+
+    .btn:not(.is-fullwidth) {
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
+    }
+  }
+
+  &.is-right {
+    justify-content: flex-end;
+
+    .btn:not(.is-fullwidth) {
+      margin-left: 0.25rem;
+      margin-right: 0.25rem;
+    }
+  }
+}

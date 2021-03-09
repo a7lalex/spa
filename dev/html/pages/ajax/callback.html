@@ -1,0 +1,43 @@
+---
+layout: ajax
+---
+
+<form class="form" action="/ajax/callback.php" method="post" data-abide data-backend="callback" novalidate>
+  <div class="form-success hide">
+    <h4 class="form__header">Спасибо!</h4>
+    <p class="form__subheader">В ближайщее время мы Вам позвоним!</p>
+  </div>
+
+  <div class="form-content">
+    <h4 class="form__header">Обратный звонок</h4>
+    <p class="form__subheader">Заполните форму и мы с Вами свяжемся!</p>
+
+    <div class="form-error hide">
+      <!-- Здесь будут ошибки с сервера -->
+      <div class="form-content__text"></div>
+    </div>
+
+    <div>
+      <label class="label sr-only" for="callback-name">Имя</label>
+      <input class="input" type="text" name="callback-name" id="callback-name" placeholder="Ваше имя" required>
+      <span class="error">{{ error.required }}</span>
+    </div>
+
+    <div>
+      <label class="label sr-only" for="callback-tel">Номер телефона</label>
+      <input class="input" type="tel" name="callback-tel" id="callback-tel" placeholder="Ваш номер телефона" required pattern="tel">
+      <span class="error" data-form-error-on="required">{{ error.required }}</span>
+      <span class="error" data-form-error-on="pattern">{{ error.tel }}</span>
+    </div>
+
+    <label class="checkbox">
+      <input type="checkbox" name="callback-consent" checked required>
+      <span class="check"></span>
+      <span class="checkbox__label">Согласен на обработку персональных данных &nbsp;и&nbsp;с&nbsp;условиями <a class="link theme-mansion-2" href="" target="_blank">Политики конфиденциальности</a></span>
+    </label>
+
+    <div class="buttons">
+      <button class="btn is-fullwidth" type="submit">Заказать звонок</button>
+    </div>
+  </div>
+</form>
