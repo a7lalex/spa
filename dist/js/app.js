@@ -2765,13 +2765,13 @@ spa.shell = function () {
     anchor_schema_map: {
       chat: { opened: true, closed: true }
     },
-    resize_interval: 200,
-    main_html: String() + '<div class="spa-shell-head">' + '<div class="spa-shell-head-logo"></div>' + '<div class="spa-shell-head-acct"></div>' + '<div class="spa-shell-head-search"></div>' + '</div>' + '<div class="spa-shell-main spa-x-closed">' + '<div class="spa-shell-main-nav"></div>' + '<div class="spa-shell-main-content"></div>' + '</div>' + '<div class="spa-shell-foot"></div>' + '<div class="spa-shell-chat"></div>'
+    //resize_interval: 200,
+    main_html: String() + '<div class="spa-shell-head">' + '<div class="spa-shell-head-logo"></div>' + '<div class="spa-shell-head-acct"></div>' + '<div class="spa-shell-head-search"></div>' + '</div>' + '<div class="spa-shell-main spa-x-closed">' + '<div class="spa-shell-main-nav"></div>' + '<div class="spa-shell-main-content"></div>' + '</div>' + '<div class="spa-shell-foot"></div>' + '<div class="spa-shell-modal"></div>'
   },
       stateMap = {
-    $container: undefined,
-    anchor_map: {},
-    resize_idto: undefined
+    //$container: undefined,
+    anchor_map: {}
+    //resize_idto: undefined
   },
       jqueryMap = {},
       copyAnchorMap,
@@ -2813,7 +2813,6 @@ spa.shell = function () {
         anchor_map_revise[key_name] = arg_map[key_name];
 
         key_name_dep = '_' + key_name;
-
         if (arg_map[key_name_dep]) {
           anchor_map_revise[key_name_dep] = arg_map[key_name_dep];
         } else {
