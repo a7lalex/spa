@@ -29,10 +29,14 @@
 <!-- build:js -->
 <script src="{{root}}js/app.js"></script>
 <script>
-  jQuery(document).ready(
-    function () {
-      spa.initModule( jQuery('#spa') ); }
-  )
+  jQuery(document).ready(function () { spa.initModule( jQuery('#spa') ); })
+  //Тестирование
+  var peopleDb = spa.model.people.get_db()
+  peopleDb().each(function (person,idx) {
+    console.log(person.name)
+  })
+  var currentUser = spa.model.people.get_db()
+  //currentUser.get_is_anon()
 </script>
 
 <!-- endbuild -->

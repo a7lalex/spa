@@ -1,7 +1,5 @@
 # Paths to JavaScript libraries, which are compined into one file
 APP:
-  - "dev/js/vendor/jquery.min.js"
-  - "dev/js/vendor/jquery.uriAnchor.js"
   # "dev/js/vendor/modulargrid/*.js"
   # "dev/js/vendor/device.min.js"
   # "dev/js/vendor/what-input.min.js"
@@ -37,11 +35,20 @@ APP:
   # "dev/js/vendor/lightslider.js"
   # "dev/js/vendor/tiny-slider.js"
   # "dev/js/vendor/jquery.tinyscrollbar.min.js"
+  - "dev/js/vendor/jquery.min.js"
+  - "dev/js/vendor/jquery.event.ue.js"
+  - "dev/js/vendor/jquery.event.gevent.js"
+  - "dev/js/vendor/jquery.uriAnchor.js"
+  - "dev/js/vendor/taffy.js"
   - "dev/js/spa/spa.js"
-  - "dev/js/spa/spa.util.js"
+  - "dev/js/spa/spa.avtr.js"
+  - "dev/js/spa/spa.chat.js"
+  - "dev/js/spa/spa.data.js"
+  - "dev/js/spa/spa.fake.js"
   - "dev/js/spa/spa.model.js"
   - "dev/js/spa/spa.shell.js"
-  - "dev/js/spa/spa.chat.js"
+  - "dev/js/spa/spa.util_b.js"
+  - "dev/js/spa/spa.util.js"
 
 PROJECT: "dev/js/project.js"
 
