@@ -134,9 +134,9 @@ spa.shell = (function () {
   onTapAcct = function (event) {
     var acct_text, user_name, user = spa.model.people.get_user()
     if (user.get_is_anon()) {
-      user_name = prompt('Please sing-in')
+      user_name = prompt('Пожалуйста, войдите в систему')
       spa.model.people.login( user_name )
-      jqueryMap.$acct.text('... processing ...')
+      jqueryMap.$acct.text('... обработка ...')
     }
     else {
       spa.model.people.logout()
@@ -147,7 +147,7 @@ spa.shell = (function () {
     jqueryMap.$acct.text(login_user.name)
   }
   onLogout = function (event, logout_user ) {
-    jqueryMap.$acct.text('Please sing-in')
+    jqueryMap.$acct.text('Пожалуйста, войдите в систему')
   }
   initModule = function ( $container ) {
     stateMap.$container = $container;
@@ -161,7 +161,7 @@ spa.shell = (function () {
     })
     spa.chat.configModule({
       set_chat_anchor: setChatAnchor,
-      //chat_model: spa.model.chat,
+      chat_model: spa.model.chat,
       people_model: spa.model.people
     })
     spa.chat.initModule( jqueryMap.$container )
@@ -169,7 +169,7 @@ spa.shell = (function () {
 
     $.gevent.subscribe($container,'spa-login', onLogin)
     $.gevent.subscribe($container, 'spa-logout', onLogout)
-    jqueryMap.$acct.text('Please sing-in').bind('utap', onTapAcct)
+    jqueryMap.$acct.text('Пожалуйста, войдите в систему').bind('utap', onTapAcct)
   }
   return { initModule: initModule };
 }())
