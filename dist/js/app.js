@@ -5566,18 +5566,209 @@ var spa = function () {
   return { initModule: initModule };
 }();
 console.log('spa', spa);
-spa.avtr = function () {}();
+spa.avtr = function () {
+  'use strict';
+
+  var configMap = {
+    chat_model: null,
+    people_model: null,
+    settable_map: {
+      chat_model: true,
+      people_model: true
+    }
+  },
+      stateMap = {
+    drag_map: null,
+    $drag_target: null,
+    drag_bg_color: undefined
+  },
+      jqueryMap = {},
+      getRandRgb,
+      setJqueryMap,
+      updateAvatar,
+      onTapNav,
+      onHeldstartNav,
+      onHeldmoveNav,
+      onHeldendNav,
+      onSetchatee,
+      onListchange,
+      onLogout,
+      configModule,
+      initModule;
+
+  getRandRgb = function () {
+    var i,
+        rgb_list = [];
+    for (i = 0; i < 3; i++) {
+      rgb_list.push(Math.floor(Math.random() * 128) + 128);
+    }
+    return 'rgb(' + rgb_list.join(',') + ')';
+  };
+  setJqueryMap = function ($container) {
+    jqueryMap = { $container: $container };
+  };
+  updateAvatar = function ($target) {
+    var css_map, person_id;
+
+    css_map = {
+      top: parseInt($target.css('top'), 10),
+      left: parseInt($target.css('left'), 10),
+      'background-color': $target.css('background-color')
+    };
+    person_id = $target.attr('data-id');
+
+    configMap.chat_model.update_avatar({
+      person_id: person_id, css_map: css_map
+    });
+  };
+  onTapNav = function (event) {
+    var css_map,
+        $target = $(event.elem_target).closest('.spa-avtr-box');
+    if ($target.length === 0) {
+      return false;
+    }
+    $target.css({ 'background-color': getRandRgb() });
+    updateAvatar($target);
+  };
+  onHeldstartNav = function (event) {
+    var offset_target_map,
+        offset_nav_map,
+        $target = $(event.elem_target).closest('.spa-avtr-box');
+
+    if ($target.length === 0) {
+      return false;
+    }
+    stateMap.$drag_target = $target;
+    offset_target_map = $target.offset();
+    offset_nav_map = jqueryMap.$container.offset();
+
+    offset_target_map.top -= offset_nav_map.top;
+    offset_target_map.left -= offset_nav_map.left;
+
+    stateMap.drag_map = offset_target_map;
+    stateMap.drag_bg_color = $target.css('background-color');
+
+    $target.addClass('spa-x-is-drag').css('background-color', '');
+  };
+  onHeldmoveNav = function (event) {
+    var drag_map = stateMap.drag_map;
+    if (!drag_map) {
+      return false;
+    }
+    drag_map.top += event.px_delta_y;
+    drag_map.left += event.px_delta_x;
+    stateMap.$drag_target.css({
+      top: drag_map.top, left: drag_map.left
+    });
+  };
+  onHeldendNav = function (event) {
+    var $drag_target = stateMap.$drag_target;
+    if (!$drag_target) {
+      return false;
+    }
+
+    $drag_target.removeClass('spa-x-is-drag').css('background-color', stateMap.drag_bg_color);
+
+    stateMap.drag_bg_color = undefined;
+    stateMap.$drag_target = null;
+    stateMap.drag_map = null;
+    updateAvatar($drag_target);
+  };
+  onSetchatee = function (event, arg_map) {
+    var $nav = $(this),
+        new_chatee = arg_map.new_chatee,
+        old_chatee = arg_map.old_chatee;
+
+    if (old_chatee) {
+      $nav.find('.spa-avtr-box[data-id=' + old_chatee.cid + ']').removeClass('spa-x-is-chatee');
+    }
+    if (new_chatee) {
+      $nav.find('.spa-avtr-box[data-id=' + new_chatee.cid + ']').addClass('spa-x-is-chatee');
+    }
+  };
+  // Метод onListchange обрабатывает моделью событие spa-listchange
+  onListchange = function (event) {
+    var $nav = $(this),
+        people_db = configMap.people_model.get_db(),
+        user = configMap.people_model.get_user(),
+        chatee = configMap.chat_model.get_chatee() || {},
+        $box;
+    $nav.empty();
+    if (user.get_is_anon()) {
+      return false;
+    }
+
+    people_db().each(function (person, idx) {
+      var class_list;
+      if (person.get_is_anon()) {
+        return true;
+      }
+      class_list = ['spa-avtr-box'];
+
+      if (person.id === chatee.id) {
+        class_list.push('spa-x-is-chatee');
+      }
+      if (person.get_is_user()) {
+        class_list.push('spa-x-is-user');
+      }
+      $box = $('<div/>').addClass(class_list.join(' ')).css(person.css_map).attr('data-id', String(person.id)).prop('title', spa.util_b.encodeHtml(person.name)).text(person.name).appendTo($nav);
+    });
+  };
+  onLogout = function () {
+    jqueryMap.$container.empty();
+  };
+  configModule = function (input_map) {
+    spa.util.setConfigMap({
+      input_map: input_map,
+      settable_map: configMap.settable_map,
+      config_map: configMap
+    });
+    return true;
+  };
+  initModule = function ($container) {
+    setJqueryMap($container);
+
+    $.gevent.subscribe($container, 'spa-setchatee', onSetchatee);
+    $.gevent.subscribe($container, 'spa-listchange', onListchange);
+    $.gevent.subscribe($container, 'spa-logout', onLogout);
+
+    $container.bind('utap', onTapNav).bind('uheldstart', onHeldstartNav).bind('uheldmove', onHeldmoveNav).bind('uheldend', onHeldendNav);
+
+    return true;
+  };
+  return {
+    configModule: configModule,
+    initModule: initModule
+  };
+}();
 console.log('spa.avtr', spa.avtr);
 
-// Тестирование консоль
-
+// Тестирование метода update_avatar
 /*
 var $t = $('<div/>')
 
-$.gevent.subscribe($t, 'spa-login', function ( event, user ) {
+$.gevent.subscribe( $t, 'spa-login', function( event, user ) {
   console.log('Hello!', user.name)
 })
-*/
+
+$.gevent.subscribe( $t, 'spa-listchange', function( event, changed_list ) {
+  console.log('*Listchange:', changed_list )
+})
+
+spa.model.people.login('Jessy')
+
+var person = spa.model.people.get_by_cid( 'id_03' )
+
+JSON.stringify( person.css_map )
+
+spa.model.chat.update_avatar({
+  person_id : 'id_03', css_map : {}
+})
+
+person = spa.model.people.get_by_cid('id_03')
+
+JSON.stringify( person.css_map )
+ */
 spa.chat = function () {
   'use strict';
 
@@ -6019,6 +6210,7 @@ spa.fake = function () {
         if (msg_type === 'leavechat') {
           delete callback_map.listchange;
           delete callback_map.updatechat;
+
           if (listchange_idto) {
             clearTimeout(listchange_idto);
             listchange_idto = undefined;
@@ -6028,8 +6220,8 @@ spa.fake = function () {
       }
       if (msg_type === 'updateavatar' && callback_map.listchange) {
         for (i = 0; i < peopleList.length; i++) {
-          if (peopleList[i]._id === data.person._id) {
-            peopleList[i].css_map === data.css_map;
+          if (peopleList[i]._id === data.person_id) {
+            peopleList[i].css_map = data.css_map;
             break;
           }
         }
@@ -6337,6 +6529,7 @@ spa.model = function () {
       return true;
     };
     update_avatar = function (avatar_update_map) {
+      //console.log(avatar_update_map)
       var sio = isFakeData ? spa.fake.mockSio : spa.data.getSio();
       if (sio) {
         sio.emit('updateavatar', avatar_update_map);
@@ -6508,13 +6701,6 @@ spa.shell = function () {
   setChatAnchor = function (position_type) {
     return changeAnchorPart({ chat: position_type });
   };
-  /*onClickChat = function( event ) {
-    changeAnchorPart({
-      chat : ( stateMap.is_chat_retracted ? 'open' : 'closed')
-    })
-    //toggleChat(stateMap.is_chat_retracted)
-    return false
-  }*/
   onTapAcct = function (event) {
     var acct_text,
         user_name,
@@ -6550,6 +6736,13 @@ spa.shell = function () {
       people_model: spa.model.people
     });
     spa.chat.initModule(jqueryMap.$container);
+
+    spa.avtr.configModule({
+      chat_model: spa.model.chat,
+      people_model: spa.model.people
+    });
+    spa.avtr.initModule(jqueryMap.$nav);
+
     $(window).bind('resize', onResize).bind('hashchange', onHashchange).trigger('hashchange');
 
     $.gevent.subscribe($container, 'spa-login', onLogin);

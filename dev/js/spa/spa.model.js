@@ -228,6 +228,7 @@ spa.model = (function () {
         return true
       }
       update_avatar = function ( avatar_update_map ) {
+        //console.log(avatar_update_map)
         var sio = isFakeData ? spa.fake.mockSio : spa.data.getSio()
         if (sio) {
           sio.emit('updateavatar', avatar_update_map)

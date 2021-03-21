@@ -73,6 +73,7 @@ spa.fake = (function () {
         if (msg_type === 'leavechat') {
           delete callback_map.listchange
           delete callback_map.updatechat
+
           if (listchange_idto) {
             clearTimeout(listchange_idto)
             listchange_idto = undefined
@@ -82,8 +83,8 @@ spa.fake = (function () {
       }
       if ( msg_type === 'updateavatar' && callback_map.listchange ) {
         for ( i = 0; i < peopleList.length; i++ ) {
-          if (peopleList[i]._id === data.person._id) {
-            peopleList[i].css_map === data.css_map
+          if (peopleList[i]._id === data.person_id) {
+            peopleList[i].css_map = data.css_map
             break
           }
         }

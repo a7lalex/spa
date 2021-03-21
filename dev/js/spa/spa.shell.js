@@ -124,13 +124,6 @@ spa.shell = (function () {
   setChatAnchor = function ( position_type ) {
     return changeAnchorPart({ chat : position_type })
   }
-  /*onClickChat = function( event ) {
-    changeAnchorPart({
-      chat : ( stateMap.is_chat_retracted ? 'open' : 'closed')
-    })
-    //toggleChat(stateMap.is_chat_retracted)
-    return false
-  }*/
   onTapAcct = function (event) {
     var acct_text, user_name, user = spa.model.people.get_user()
     if (user.get_is_anon()) {
@@ -165,7 +158,16 @@ spa.shell = (function () {
       people_model: spa.model.people
     })
     spa.chat.initModule( jqueryMap.$container )
-    $(window).bind('resize', onResize ).bind( 'hashchange', onHashchange ).trigger('hashchange')
+
+    spa.avtr.configModule({
+      chat_model: spa.model.chat,
+      people_model: spa.model.people
+    })
+    spa.avtr.initModule( jqueryMap.$nav )
+
+    $(window).bind('resize', onResize )
+      .bind( 'hashchange', onHashchange )
+      .trigger('hashchange')
 
     $.gevent.subscribe($container,'spa-login', onLogin)
     $.gevent.subscribe($container, 'spa-logout', onLogout)
